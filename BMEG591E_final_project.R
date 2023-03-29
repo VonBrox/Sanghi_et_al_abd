@@ -7,7 +7,7 @@
 
 #Part I: ATAC-seq data
 
-# Part i: Pre-processing
+# Part i: Pre-processing and peak calling
 
 # While there are 106 ATAC-seq samples for this project, we will only use the first 3
 # Of these, which have 2 technical replicates each, we randomly chose which replicate to use:
@@ -25,33 +25,25 @@
 
 #Pre-processing steps:
 
-# Trim adapters with cutadapt (ENCODE pipeline uses cutadapt, not trimmomatic)
-
-
+# Trim adapters with cutadapt. (This study used Illumina NovaSeq 6000)
 
 # QC: Check the fastq files using fastQC
 
 mkdir fastQC_output  
 fastqc -o ./fastQC_output *.fastq.gz
 
-#Download fastqc files to computer for analysis
-
-
-
-
-
-
+#Download fastqc files to computer for analysis. Give summary of analysis:...
 
 # Align to hg38 with bowtie2, generating SAM file
-  
+
 # Convert to BAM file using samtools
-  
-# Sort the alignment files by genomic position: sambamba (*https://lomereiter.github.io/sambamba/docs/sambamba-view.html*)
-  
+
+# Sort the alignment files by genomic position: sambamba
+
 # Filter for uniquely mapped reads: sambamba 
-    
 
 #ATAC-seq processing steps:
+
 # Peak calling with macs2 [see assn 5] using the special parameters outlined in the paper
 
 mkdir peak_calling
@@ -59,9 +51,13 @@ macs2 callpeak -t [tfile] -c [cfile] -f BAM --outdir peak_calling -n [output nam
 
 #extra Parameters given in the paper:
 –shift−75–extsize 150–nomodel–call-summits–nolambda–keep-dup all -p 0.01
+#"The peak summits were then extended by 100 bp on either side to a final width of 200 bp.
 
+#Use BEDTools coverage to count independent TN5 insertions in each peak
+
+
+#Part ii: Analysis of peak counts
 
 #Read in the count data for the ATAC-seq part of the experiment
 atacSeqData = read.table("GSE162515_ATACseq_logCounts.txt", stringsAsFactors = FALSE, header = TRUE)
-atacSeqData = read.table(textConnection(readLines(gzcon(url("ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE148nnn/GSE148175/suppl/GSE148175_count_matrix_raw_atac_BRM014_ACBI1.csv.gz")))), 
-                         sep=",", stringsAsFactors = FALSE, header = TRUE)
+
