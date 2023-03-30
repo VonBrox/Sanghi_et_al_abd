@@ -3,7 +3,8 @@
 #Sakshi Goyal and Liam Brockley
 
 #Replicating Sanghi et al: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8484618/
-#Files stored at GEO database: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE162515
+#ATAC-seq and RNA-seq Files stored at GEO database: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE162515
+#Protein abundance files stored at https://www.ebi.ac.uk/pride/archive/projects/PXD023078
 
 #Part I: ATAC-seq data
 
