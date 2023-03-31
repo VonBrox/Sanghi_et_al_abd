@@ -8,8 +8,6 @@
 
 #Part I: ATAC-seq data
 
-# Part i: ATAC-Seq data analysis (Pre-processing, peak calling, normalization...)
-
 # While there are 106 ATAC-seq samples for this project, we will only use the first 3.
 # These have 2 technical replicates each, and we randomly chose which replicate to use:
 
@@ -24,9 +22,10 @@
 
 # Since this pipeline mainly uses programs we have covered in class, I called them one at a time instead of using the pipeline
 
-#Pre-processing steps:
+# Part I-i: ATAC-Seq data analysis (Pre-processing, peak calling, normalization...)
 
-# Trim adapters with trimmomatic (This study used cutadapt but they accomplish the same thing)
+# Trim adapters with trimmomatic (ENCODE uses cutadapt but they accomplish the same thing)
+
 
 # QC: Check the fastq files using fastQC
 
@@ -66,5 +65,8 @@ macs2 callpeak -t [tfile] -c [cfile] -f BAM --outdir peak_calling -n [output nam
 #Read in the count data for the ATAC-seq part of the experiment
 atacSeqData = read.table("GSE162515_ATACseq_logCounts.txt", stringsAsFactors = FALSE, header = TRUE)
 
-# Correlation of counts across the 
+# Correlation of counts across ATAC-seq, RNA-seq, and proteomic data from the thyroid cancer samples:
 #https://github.com/asanghi7/epigenoproteomics/blob/main/R/graphcorrelation.R
+
+
+
